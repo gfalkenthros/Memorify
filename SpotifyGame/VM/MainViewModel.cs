@@ -10,8 +10,6 @@ namespace SpotifyGame.VM
 {
     public class MainViewModel : ViewModel
     {
-        private string _test = "TEST STRING";
-
         private Playlist _playlist;
 
         private RelayCommand _getRandomSongBtn;
