@@ -1,0 +1,42 @@
+﻿<Application
+    x:Class="SpotifyGame.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:SpotifyGame">
+
+    <Application.Resources>
+        <Style x:Key="OptionButton" TargetType="Button">
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Background" Value="{StaticResource SpotifyDarkGray}"/>
+            <Setter Property="Foreground" Value="{StaticResource SpotifyWhite}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource SpotifyLightGray}"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Margin" Value="0,0,0,50"/>
+        </Style>
+
+        <Style x:Key="InformationBox" TargetType="TextBlock">
+            <Setter Property="Foreground"  Value="{StaticResource SpotifyWhite}"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="Height" Value="Auto"/>
+        </Style>
+
+        <Style x:Key="TextField" TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource SpotifyWhite}"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        </Style>
+
+        <SolidColorBrush x:Key="SpotifyGreen" Color="#1db954"/>
+        <SolidColorBrush x:Key="SpotifyBlack" Color="#121212"/>
+        <SolidColorBrush x:Key="SpotifyDarkGray" Color="#212121"/>
+        <SolidColorBrush x:Key="SpotifyGray" Color="#535353	"/>
+        <SolidColorBrush x:Key="SpotifyLightGray" Color="#b3b3b3"/>
+        <SolidColorBrush x:Key="SpotifyWhite" Color="#FFFFFFFF"/>
+    </Application.Resources>
+    
+</Application>
