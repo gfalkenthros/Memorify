@@ -44,7 +44,6 @@ namespace SpotifyGame.VM
             }
         }
 
-        public string Test { get => _test; set => _test = value; }
         public RelayCommand GetRandomSongBtn { get => _getRandomSongBtn; set => _getRandomSongBtn = value; }
         internal Playlist Playlist
         {
