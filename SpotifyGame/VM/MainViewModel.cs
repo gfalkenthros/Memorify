@@ -13,15 +13,21 @@ namespace SpotifyGame.VM
         private Playlist _playlist;
 
         private RelayCommand _getRandomSongBtn;
+        private RelayCommand _getRandomFieldsBtn;
         private RelayCommand _loadPlaylistBtn;
+        private List<string> _fields;
 
-        private string _song;
+        private Song _song;
+        private int _difficulty;
 
         public MainViewModel()
         {
-            Song = "Please Select Playlist";
+            CurSong = new Song();
             Playlist = new Playlist();
+            Fields = new List<string>() { "one", "two", "three" };
+            Difficulty = 1;
             GetRandomSongBtn = new RelayCommand(LoadRandomSong);
+            GetRandomFieldsBtn = new RelayCommand(GetRandomFields);
             LoadPlaylistBtn = new RelayCommand(LoadPlaylist);
         }
 
@@ -34,23 +40,46 @@ namespace SpotifyGame.VM
 
             Playlist = new Playlist(playlistFile);
             PlaylistTitle = Playlist.Title;
+
+        }
+
+
+        public async void GetRandomFields()
+        {
+            Fields.Clear();
+
+            List<string> temp = new List<string>() { };
+
+            Random r = new Random();
+            int length = CurSong.Fields.Values.Count;
+            for(int i = Difficulty; i <= 4; i++)
+            {
+                int index = r.Next(0, length);
+                temp.Add(CurSong.Fields.Values.ElementAt(index));
+            }
+
+            Fields = temp;
+            OnPropertyChanged("Fields");
         }
 
         private void LoadRandomSong()
         {
             if (Playlist != null)
             {
-                Song = Playlist.GetRandomSong();
+                CurSong = new Song(Playlist.GetRandomSong());
+                GetRandomFields();
             }
         }
 
         public RelayCommand GetRandomSongBtn { get => _getRandomSongBtn; set => _getRandomSongBtn = value; }
+        public RelayCommand GetRandomFieldsBtn { get; }
+
         internal Playlist Playlist
         {
             get => _playlist;
             set { SetProperty(ref _playlist, value, "Playlist"); }
         }
-        public string Song
+        public Song CurSong
         {
             get => _song;
             set { SetProperty(ref _song, value, "Song"); }
@@ -61,5 +90,16 @@ namespace SpotifyGame.VM
             get => Playlist.Title;
             set { Playlist.Title = value; OnPropertyChanged("PlaylistTitle"); }
         }
+
+        public List<string> Fields
+        {
+            get => _fields;
+            set
+            {
+                SetProperty(ref _fields, value, "Fields");
+            }
+        }
+
+        public int Difficulty { get => _difficulty; set => _difficulty = value; }
     }
 }

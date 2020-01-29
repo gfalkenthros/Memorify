@@ -41,7 +41,9 @@ namespace SpotifyGame.Model
         {
             if (f != null)
             {
-                _songs = (await FileIO.ReadLinesAsync(f)).ToList();
+                List<string> lines = (await FileIO.ReadLinesAsync(f)).ToList();
+                lines.RemoveAt(0); // Headeer Line, not actual song data
+                _songs = lines;
             }
             else
             {

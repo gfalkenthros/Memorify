@@ -6,20 +6,41 @@ using System.Threading.Tasks;
 
 namespace SpotifyGame.Model
 {
-    class Song
+    //﻿Spotify URI,Track Name,Artist Name,Album Name,Disc Number,Track Number,Track Duration (ms),Added By,Added At
+    public class Song
     {
-        private string _title;
-        private string _artist;
-        private string v1;
-        private string v2;
+        private Dictionary<string, string> _fields = new Dictionary<string, string>();
 
-        public Song(string v1, string v2)
+
+        public Song()
         {
-            this.v1 = v1;
-            this.v2 = v2;
+            Fields["spotifyUri"] = "";
+            Fields["trackName"] = "";
+            Fields["artist"] = "";
+            Fields["album"] = "";
+            Fields["discNumber"] = "";
+            Fields["trackNumber"] = "";
+            Fields["trackDuration"] = "";
+            Fields["addedBy"] = "";
+            Fields["addedAt"] = "";
         }
 
-        public string Title { get => _title; set => _title = value; }
-        public string Artist { get => _artist; set => _artist = value; }
+        public Song(string songString)
+        {
+            string[] values = songString.Split(',');
+
+            Fields["spotifyUri"] = values[0];
+            Fields["trackName"] = values[1];
+            Fields["artist"] = values[2];
+            Fields["album"] = values[3];
+            Fields["discNumber"] = values[4];
+            Fields["trackNumber"] = values[5];
+            Fields["trackDuration"] = values[6];
+            Fields["addedBy"] = values[7];
+            Fields["addedAt"] = values[8];
+           
+        }
+
+        public Dictionary<string, string> Fields { get => _fields; set => _fields = value; }
     }
 }
